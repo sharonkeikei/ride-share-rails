@@ -1,0 +1,8 @@
+
+<h1>Drivers info</h1>
+<ol>
+<%= @drivers.each do |driver| %>
+<%= driver[:name]%>
+<%= driver[:vin] %>
+<%end%>
+</ol>
