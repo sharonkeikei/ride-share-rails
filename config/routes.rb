@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   patch '/drivers/:id/toggle_available', to: 'drivers#toggle_available', as: 'toggle_available'
 
-  root 'homepages#index'
+  root to: 'homepages#index'
 
 end

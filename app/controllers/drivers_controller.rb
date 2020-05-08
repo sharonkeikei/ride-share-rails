@@ -75,7 +75,7 @@ class DriversController < ApplicationController
     if @driver.available?
       @driver.update(available: false)
       redirect_to driver_path
-      flash[:success] = "Driver is no longer available"
+      flash[:success] = "Driver is no longer available :("
     else
       @driver.update(available: true)
       redirect_to driver_path
