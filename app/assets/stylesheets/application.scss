@@ -58,13 +58,13 @@ table {
   text-align: center;
 }
 
-.driver-container {
+.driver-container, .passenger-container {
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 30px;
 }
 
-.driver_info, .new_driver {
+.driver_info, .new_driver, .passenger-info, .new_passenger {
   padding: 50px;
 }
 

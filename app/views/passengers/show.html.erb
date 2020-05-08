@@ -1,0 +1,11 @@
+<section class='passenger_info'>
+  <br>
+  <h1>Passenger #<%=@passenger.id%><h1>
+  <br>
+  <img class='profile_pic' src="https://source.unsplash.com/random" alt='random pictures'> 
+  <h3> Passenger Name: <%= @passenger.name%> </h3>
+  <p>Phone #<%=@passenger.phone_num %></p>
+  <br>
+  <%= link_to 'Delete passenger', passenger_path(@passenger.id), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?'} %>
+  <%= link_to 'Edit passenger', edit_passenger_path(@passenger.id), class: 'btn btn-outline-secondary btn-sm' %>
+</section>
