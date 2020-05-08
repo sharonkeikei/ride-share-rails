@@ -11,7 +11,7 @@ class DriversController < ApplicationController
 
   
   def index
-    @drivers = 
+    @drivers = Driver.all
   end
 
   def show
