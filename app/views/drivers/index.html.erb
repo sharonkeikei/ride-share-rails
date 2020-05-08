@@ -1,22 +1,27 @@
-
-<h1>Drivers info</h1>
-<table class="table table-hover table-bordered">
-<thead class='thead-light'>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Vin #</th>
-    <th>Availability</th>
-  </tr>
-</thead>
-  <tbody>
-    <% @drivers.each do |driver| %>
-    <tr>
-      <td><%= driver.id%></td>
-      <td><%= driver.name%></td>
-      <td><%= driver.vin %></td>
-      <td><%= (driver.available) ? 'YES!' : 'No'%></td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
+<div class="driver-container">
+  <h3>Drivers info</h3>
+  <table class="table table-hover table-bordered tbl-driver ">
+    <thead class="thead-light" >
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Vin #</th>
+        <th>Availability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @drivers.length > 0 %>
+        <% @drivers.each do |driver| %>
+          <tr>
+            <td><%= driver.id%></td>
+            <td><%= link_to driver.name, driver_path(driver.id)%></td>
+            <td><%= driver.vin %></td>
+            <td><%= (driver.available) ? 'Available!' : 'Unavailable'%></td>
+          </tr>
+        <%end%>
+      <% else %>
+        <h3>No Drivers left in the system!</h3>
+      <% end %>
+    </tbody>
+  </table>
+</div>
