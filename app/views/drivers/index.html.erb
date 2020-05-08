@@ -10,14 +10,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @drivers.each do |driver| %>
-        <tr>
-          <td><%= driver.id%></td>
-          <td><%= driver.name%></td>
-          <td><%= driver.vin %></td>
-          <td><%= (driver.available) ? 'Available!' : 'Unavailable'%></td>
-        </tr>
-      <%end%>
+      <% if @drivers.length > 0 %>
+        <% @drivers.each do |driver| %>
+          <tr>
+            <td><%= driver.id%></td>
+            <td><%= link_to driver.name, driver_path(driver.id)%></td>
+            <td><%= driver.vin %></td>
+            <td><%= (driver.available) ? 'Available!' : 'Unavailable'%></td>
+          </tr>
+        <%end%>
+      <% else %>
+        <h3>No Drivers left in the system!</h3>
+      <% end %>
     </tbody>
   </table>
 </div>
