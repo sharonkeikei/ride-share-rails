@@ -1,0 +1,15 @@
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+  <form class='form-group row'>
+  <div class='col-2'>
+    <%= f.label :name%>
+    <%= f.text_field :name%>
+  </div>
+  <div class='col-2'>
+    <%= f.label :vin%>
+    <%= f.text_field :vin%>
+  </div>
+  <div class="col-2">
+  <%= f.submit action_name, class: 'btn btn-outline-secondary btn-sm'%>
+  </div>
+  </form>
+<%end%>
