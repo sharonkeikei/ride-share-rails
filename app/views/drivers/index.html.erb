@@ -1,8 +1,22 @@
 
 <h1>Drivers info</h1>
-<ol>
-<%= @drivers.each do |driver| %>
-<%= driver[:name]%>
-<%= driver[:vin] %>
-<%end%>
-</ol>
+<table class="table table-hover table-bordered">
+<thead class='thead-light'>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Vin #</th>
+    <th>Availability</th>
+  </tr>
+</thead>
+  <tbody>
+    <% @drivers.each do |driver| %>
+    <tr>
+      <td><%= driver.id%></td>
+      <td><%= driver.name%></td>
+      <td><%= driver.vin %></td>
+      <td><%= (driver.available) ? 'YES!' : 'No'%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

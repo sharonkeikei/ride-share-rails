@@ -14,3 +14,51 @@
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
 @import "**/*";
+
+body.container {
+  width: 100vw;
+  // background-image: url(white.jpeg);
+  background-size: cover;
+  margin: 0;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 18px; 
+  margin: 150px;
+}
+
+.striker {
+  text-decoration: line-through;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px 10px;
+}
+
+a {
+  color: #000;
+}
+
+a:visited {
+  color: #666;
+}
+
+a:hover {
+  color: #fff;
+  background-color: grey;
+}
+
+h1 {
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.container {
+  display: block;
+  width: 100%;
+}
+
