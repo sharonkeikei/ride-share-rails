@@ -9,4 +9,5 @@
 <br>
 <%= link_to 'Delete Driver', driver_path(@driver.id), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?'} %>
 <%= link_to @driver.available ? 'Mark Unavailable' : 'Make Available', toggle_available_path(@driver.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %>
+<%= link_to 'Edit Driver', edit_driver_path(@driver.id), class: 'btn btn-outline-secondary btn-sm' %>
 </section>

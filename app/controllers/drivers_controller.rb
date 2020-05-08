@@ -21,9 +21,10 @@ class DriversController < ApplicationController
   def create
     @driver = Driver.new(driver_params)
     if @driver.save
+      flash[:success] = "Driver added successfully"
       redirect_to driver_path(@driver.id)
     else
-      render :new, :bad_request
+      render :new
     end
   end
 
@@ -46,6 +47,7 @@ class DriversController < ApplicationController
       return
     elsif @driver.update(driver_params)
       redirect_to driver_path(@driver.id)
+      flash[:success] = "Driver updated successfully"
       return
     else
       render :edit
@@ -63,6 +65,7 @@ class DriversController < ApplicationController
 
     @driver.destroy
     redirect_to drivers_path
+    flash[:success] = "Driver removed successfully"
     return
   end
 
@@ -72,9 +75,11 @@ class DriversController < ApplicationController
     if @driver.available?
       @driver.update(available: false)
       redirect_to driver_path
+      flash[:success] = "Driver is no longer available"
     else
       @driver.update(available: true)
       redirect_to driver_path
+      flash[:success] = "Yay! Driver is ready to go!"
     end
     return
   end
