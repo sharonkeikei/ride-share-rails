@@ -3,5 +3,10 @@ Rails.application.routes.draw do
   resources :drivers 
   resources :passengers
   
+  get '/homepages', to: 'homepages#index', as: 'homepages'
+
   patch '/drivers/:id/toggle_available', to: 'drivers#toggle_available', as: 'toggle_available'
+
+  root 'homepages#index'
+
 end
