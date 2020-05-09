@@ -1,0 +1,21 @@
+<section class='trip_info'>
+  <br>
+  <h1>Trip #<%=@trip.id%><h1>
+  <br>
+  <p>Driver Name: <%= @trip.driver.name %></p>
+  <p>Passenger Name: <%= @trip.passenger.name %></p>
+  <p>Date: <%= @trip.date %></p>
+  <p>Cost: <%= @trip.cost %></p>
+  <p>Rating: <%= @trip.rating %></p>
+  <br>
+  <%= link_to 'Delete trip',
+    trip_path(@trip.id),
+    class: 'btn btn-outline-danger btn-sm',
+    method: :delete,
+    data: { confirm: 'Are you sure you want to delete this trip?'}
+  %>
+  <%= link_to 'Edit trip',
+    edit_trip_path(@trip.id),
+    class: 'btn btn-outline-secondary btn-sm'
+  %>
+</section>
