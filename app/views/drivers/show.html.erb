@@ -1,13 +1,25 @@
 <section class='driver_info'>
-<br>
-<h1>Driver #<%=@driver.id%><h1>
-<br>
-<img class='profile_pic' src="https://source.unsplash.com/random" alt='random pictures'> 
-<h3> Driver Name: <%= @driver.name%> </h3>
-<p>Vin #<%=@driver.vin %></p>
-<p>Avilability: <%= (@driver.available) ? 'Available!' : 'Unavailable'%></p>
-<br>
-<%= link_to 'Delete Driver', driver_path(@driver.id), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?'} %>
-<%= link_to @driver.available ? 'Mark Unavailable' : 'Make Available', toggle_available_path(@driver.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %>
-<%= link_to 'Edit Driver', edit_driver_path(@driver.id), class: 'btn btn-outline-secondary btn-sm' %>
+  <br>
+  <h1>Driver #<%=@driver.id%><h1>
+  <br>
+  <img class='profile_pic' src="https://source.unsplash.com/random" alt='random pictures'> 
+  <h3> Driver Name: <%= @driver.name %></h3>
+  <p>Vin Number: <%= @driver.vin %></p>
+  <p>Availability: <%=@driver.available ? 'Available' : 'Unavailable'%></p>
+  <br>
+  <%= link_to 'Delete Driver',
+    driver_path(@driver.id),
+    class: 'btn btn-outline-danger btn-sm',
+    method: :delete,
+    data: { confirm: 'Are you sure?'}
+  %>
+  <%= link_to (@driver.available ? 'Make Unavailable' : 'Make Available'),
+    toggle_available_path(@driver.id),
+    class: 'btn btn-outline-secondary btn-sm',
+    method: :patch 
+  %>
+  <%= link_to 'Edit Driver',
+    edit_driver_path(@driver.id),
+    class: 'btn btn-outline-secondary btn-sm'
+  %>
 </section>

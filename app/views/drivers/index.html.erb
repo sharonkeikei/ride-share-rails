@@ -5,7 +5,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Vin #</th>
+        <th>Vin Number</th>
         <th>Availability</th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
             <td><%= driver.id%></td>
             <td><%= link_to driver.name, driver_path(driver.id)%></td>
             <td><%= driver.vin %></td>
-            <td><%= (driver.available) ? 'Available!' : 'Unavailable'%></td>
+            <td><%= (driver.available) ? 'Available' : 'Unavailable'%></td>
           </tr>
         <%end%>
       <% else %>

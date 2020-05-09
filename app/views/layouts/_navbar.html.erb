@@ -5,24 +5,25 @@
       <li class="nav-item">
         <%= link_to 'Home', root_path, class: "nav-link"%>
       </li>
+
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Drivers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'All Drivers', drivers_path, class: "dropdown-item"%>
           <%= link_to 'Add New Driver', new_driver_path, class: "dropdown-item"%>
         </div>
-      
       </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Passangers
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Passengers
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'All Passengers', passengers_path, class: "dropdown-item"%>
           <%= link_to 'Add New Passenger', new_passenger_path, class: "dropdown-item"%>
-          </div>
+        </div>
       </li>
     </ul>
   </div>

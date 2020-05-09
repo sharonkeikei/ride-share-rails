@@ -3,22 +3,22 @@
   <table class="table table-hover table-bordered tbl-passenger ">
     <thead class="thead-light" >
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone #</th>
+        <th>ID </th>
+        <th>Name </th>
+        <th>Phone Number </th>
       </tr>
     </thead>
     <tbody>
       <% if @passengers.length > 0 %>
         <% @passengers.each do |passenger| %>
           <tr>
-            <td><%= passenger.id%></td>
-            <td><%= link_to passenger.name, passenger_path(passenger.id)%></td>
+            <td><%= passenger.id %></td>
+            <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
             <td><%= passenger.phone_num %></td>
           </tr>
         <%end%>
       <% else %>
-        <h3>No passengers left in the system!</h3>
+        <h3> No passengers currently in the system!</h3>
       <% end %>
     </tbody>
   </table>
