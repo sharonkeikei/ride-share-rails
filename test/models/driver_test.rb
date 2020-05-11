@@ -63,64 +63,66 @@ describe Driver do
       
       before do
         # Make a driver with trips
-        new_driver = Driver.new(name: "Kari", vin: "123", available: true)
-        new_driver.save
-        new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
-        trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
-        trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
+        @kari_driver = Driver.new(name: "Kari", vin: "123", available: true)
+        @kari_driver.save
+        @kari_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+        @trip_1 = Trip.create(driver_id: @kari_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 5, cost: 1234)
+        @trip_2 = Trip.create(driver_id: @kari_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 3, cost: 6334)
         
         # Make driver without trips
-        no_trips_driver = Driver.new(name: "Henry", vin: "456", available: true)
-        no_trips_driver.save
+        @no_trips_driver = Driver.new(name: "Henry", vin: "456", available: true)
+        @no_trips_driver.save
       end
 
     describe "average rating" do
 
       it "returns nil if driver has not driven any trips" do
-        expect(no_trips_driver.trips.length).must_equal 0
-        expect(no_trips_driver.average_rating).must_be_nil
+        @no_trips_driver = Driver.new(name: "Henry", vin: "456", available: true)
+        @no_trips_driver.save
+        expect(@no_trips_driver.trips.length).must_equal 0
+        expect(@no_trips_driver.average_rating).must_be_nil
       end
 
       it "accesses all the driver's trips for a driver with trips already driven" do
-        expect(new_driver.trips.length).must_equal 2
+        expect(@kari_driver.trips.length).must_equal 2
       end
 
       it "correctly computes the average rating" do
-        expect(new_driver.average_rating).must_equal 4
+        expect(@kari_driver.average_rating).must_equal 4
       end
 
       it "correctly computes average when another trip is added" do
-        expect(new_driver.trips.length).must_equal 2
+        expect(@kari_driver.trips.length).must_equal 2
 
         # Add a new trip
-        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 5)
-
-        expect(new_driver.trips.length).must_equal 3
+        @trip_3 = Trip.create(driver_id: @kari_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 2, cost: 5)
+        @kari_driver.reload
+        expect(@kari_driver.trips.length).must_equal 3
         # round average rating to nearest integer
-        expect(new_driver.average_rating).must_equal 3
+        expect(@kari_driver.average_rating).must_equal 3
       end
     end
 
     describe "total earnings" do
       # Your code here
       it "return 0 if driver has not driven any trip" do
-        expect(no_trips_driver.total_earnings).must_equal 0
+        expect(@no_trips_driver.total_earnings).must_equal 0
       end
 
       it 'correctly return the correct total earnings if driver has driven' do
-        expect(new_driver.total_earnings).must_equal 6051.76
+        expect(@kari_driver.total_earnings).must_equal 6051.76
       end
 
       it 'will add the new trip earning after a new trip is completed' do
-        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 5)
-        expect(new_driver.total_earnings).must_equal 6055.44
+        @trip_3 = Trip.create(driver_id: @kari_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 2, cost: 5)
+        expect(@kari_driver.total_earnings).must_equal 6055.44
       end
 
     end
 
     describe "can go online" do
       # Your code here
-      
+
     end
 
     describe "can go offline" do
