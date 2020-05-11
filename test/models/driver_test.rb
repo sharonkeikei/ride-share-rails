@@ -103,10 +103,24 @@ describe Driver do
 
     describe "total earnings" do
       # Your code here
+      it "return 0 if driver has not driven any trip" do
+        expect(no_trips_driver.total_earnings).must_equal 0
+      end
+
+      it 'correctly return the correct total earnings if driver has driven' do
+        expect(new_driver.total_earnings).must_equal 6051.76
+      end
+
+      it 'will add the new trip earning after a new trip is completed' do
+        trip_3 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 2, cost: 5)
+        expect(new_driver.total_earnings).must_equal 6055.44
+      end
+
     end
 
     describe "can go online" do
       # Your code here
+      
     end
 
     describe "can go offline" do
