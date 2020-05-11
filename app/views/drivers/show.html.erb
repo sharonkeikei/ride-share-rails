@@ -6,6 +6,8 @@
   <h3> Driver Name: <%= @driver.name %></h3>
   <p>Vin Number: <%= @driver.vin %></p>
   <p>Availability: <%=@driver.available ? 'Available' : 'Unavailable'%></p>
+  <p>Average rating: <%= @driver.average_rating ? @driver.average_rating : "No average available" %></p>
+  <p>Total earnings: $<%= @driver.total_earnings %></p>
   <br>
   <%= link_to 'Delete Driver',
     driver_path(@driver.id),
