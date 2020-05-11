@@ -77,8 +77,6 @@ describe Driver do
     describe "average rating" do
 
       it "returns nil if driver has not driven any trips" do
-        @no_trips_driver = Driver.new(name: "Henry", vin: "456", available: true)
-        @no_trips_driver.save
         expect(@no_trips_driver.trips.length).must_equal 0
         expect(@no_trips_driver.average_rating).must_be_nil
       end
@@ -115,7 +113,8 @@ describe Driver do
 
       it 'will add the new trip earning after a new trip is completed' do
         @trip_3 = Trip.create(driver_id: @kari_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 2, cost: 5)
-        expect(@kari_driver.total_earnings).must_equal 6055.44
+        @kari_driver.reload
+        expect(@kari_driver.total_earnings).must_equal 6054.44
       end
 
     end

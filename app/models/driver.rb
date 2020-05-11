@@ -19,5 +19,13 @@ class Driver < ApplicationRecord
   end
 
   def total_earnings
+    return 0 if self.trips.length == 0
+
+    earnings_list = []
+    self.trips.each do |trip|
+      earnings_list << ((trip.cost - 1.65) * 0.8)
+    end
+
+    return earnings_list.sum.round(2)
   end
 end
