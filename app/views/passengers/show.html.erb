@@ -17,6 +17,11 @@
     edit_passenger_path(@passenger.id),
     class: 'btn btn-outline-secondary btn-sm'
   %>
+  <%= link_to 'Request new trip',
+    passenger_trips_path(@passenger.id),
+    method: :post, 
+    class: 'btn btn-outline-secondary btn-sm' 
+  %>
 </section>
 
 <section class='trips_table'>

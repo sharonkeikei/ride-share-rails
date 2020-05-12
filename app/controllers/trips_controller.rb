@@ -20,10 +20,12 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    new_params = Trip.request_trip
+    @trip = Trip.new(new_params)
+    @trip.passenger_id = params[:passenger_id]
     if @trip.save
       flash[:success] = "Trip added successfully"
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(params[:passenger_id])
     else
       render :new
     end

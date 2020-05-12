@@ -78,14 +78,6 @@ describe DriversController do
       }
 
       expect{post drivers_path, params: driver_param}.must_differ "Driver.count", 0
-      
-
-      ######### we render :new again so we decide not to test render
-      # Becca said don't worry about testing render
-      # TO DO: figure out which redirect test will work
-      # must_redirect_to new_driver_path
-      # must_respond_with :success
-      # assert_template :new
     end
   end
   
@@ -177,39 +169,20 @@ describe DriversController do
       expect(dobby_the_driver.name).must_equal 'Dobby'
       expect(dobby_the_driver.vin).must_equal '12345789'
 
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
-
-      ######### we render :edit so we decide not to test render
-
+      # we render :edit so we decide not to test render
     end
   end
 
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
-      # Arrange
-      # Ensure there is an existing driver saved
       removing_driver = Driver.create(name: 'Winnie the pooh', vin: 'FACC4578STQ')
-      # Act-Assert
-      # Ensure that there is a change of -1 in Driver.count
       expect{delete driver_path(removing_driver.id)}.must_differ 'Driver.count', -1
-      # Assert
-      # Check that the controller redirects
       must_redirect_to drivers_path
     end
 
     it "does not change the db when the driver does not exist, then redirect back to drivers list" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
       non_existing_id = -1
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
       expect{delete driver_path(non_existing_id)}.wont_change 'Driver.count'
-      # Assert
-      # Check that the controller responds or redirects with whatever your group decides
       must_redirect_to drivers_path
     end
   end
@@ -219,8 +192,7 @@ describe DriversController do
       Driver.create(name: 'Hello Kitty', vin: '12345678', available: true)
     end
 
-    it "updates the available boolean from true to false when clicked" do
-      # test that patch happens
+    it "updates the available boolean from true to false" do
 
       driver = Driver.first
 
@@ -232,7 +204,7 @@ describe DriversController do
     end
 
 
-    it "updates the available boolean from false to true when clicked" do
+    it "updates the available boolean from false to true" do
       driver = Driver.first
 
       patch toggle_available_path(driver.id)
@@ -242,6 +214,5 @@ describe DriversController do
       must_redirect_to driver_path(driver.id)
       expect(driver.available).must_equal true
     end
-
   end
 end

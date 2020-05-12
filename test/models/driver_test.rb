@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Driver do
   let (:new_driver) {
-    Driver.new(name: "Kari", vin: "123", available: true)
+    Driver.new(name: "Kari", vin: "123", available: false)
   }
   it "can be instantiated" do
     # Assert
@@ -125,6 +125,24 @@ describe Driver do
     describe "can go offline" do
       # Your code here
     end
+
+
+    ## TODO : testing for driver class method
+    # describe "find_first_available" do
+    #   it "correctly finds the first driver with availability" do
+    #     driver1 = Driver.create(name: "Harry Potter", vin: "12345", available: false)
+    #     driver2 = Driver.create(name: "Hermione Granger", vin: "848372")
+    #     driver3 = Driver.create(name: "Hagrid", vin: "429294")
+
+    #     expect(Driver.find_first_available).must_equal driver2.id
+        
+
+    #   end
+
+    #   it "returns nil if no drivers have availability" do
+        
+    #   end
+    # end
 
     # You may have additional methods to test
   end

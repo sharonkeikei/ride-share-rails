@@ -28,4 +28,8 @@ class Driver < ApplicationRecord
 
     return earnings_list.sum.round(2)
   end
+
+  def self.find_first_available 
+    return self.where(available: true).order(id: :asc).first   
+  end
 end
