@@ -79,6 +79,8 @@ describe DriversController do
 
       expect{post drivers_path, params: driver_param}.must_differ "Driver.count", 0
       
+
+      ######### we render :new again so we decide not to test render
       # Becca said don't worry about testing render
       # TO DO: figure out which redirect test will work
       # must_redirect_to new_driver_path
@@ -155,18 +157,33 @@ describe DriversController do
       must_respond_with 404
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
       # Assign the existing driver's id to a local variable
       # Set up the form data so that it violates Driver validations
+      dobby_the_driver = Driver.create(name: 'Dobby', vin: '12345789')
+
+      driver_param = {
+        driver: {
+          vin: nil
+        }
+      }
+
+      expect{patch driver_path(dobby_the_driver.id), params: driver_param}.wont_change "Driver.count"
+      
+      dobby_the_driver.reload
+      expect(dobby_the_driver.name).must_equal 'Dobby'
+      expect(dobby_the_driver.vin).must_equal '12345789'
 
       # Act-Assert
       # Ensure that there is no change in Driver.count
 
       # Assert
       # Check that the controller redirects
+
+      ######### we render :edit so we decide not to test render
 
     end
   end
@@ -175,25 +192,25 @@ describe DriversController do
     it "destroys the driver instance in db when driver exists, then redirects" do
       # Arrange
       # Ensure there is an existing driver saved
-
+      removing_driver = Driver.create(name: 'Winnie the pooh', vin: 'FACC4578STQ')
       # Act-Assert
       # Ensure that there is a change of -1 in Driver.count
-
+      expect{delete driver_path(removing_driver.id)}.must_differ 'Driver.count', -1
       # Assert
       # Check that the controller redirects
-
+      must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then redirect back to drivers list" do
       # Arrange
       # Ensure there is an invalid id that points to no driver
-
+      non_existing_id = -1
       # Act-Assert
       # Ensure that there is no change in Driver.count
-
+      expect{delete driver_path(non_existing_id)}.wont_change 'Driver.count'
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
-
+      must_redirect_to drivers_path
     end
   end
 
