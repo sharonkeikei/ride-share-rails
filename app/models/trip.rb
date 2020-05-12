@@ -10,10 +10,14 @@ class Trip < ApplicationRecord
     new_trip_params = {
       date: Date.today,
       cost: (rand * (2000-5) + 5).round(2),
-      driver_id: assigned_driver.id
+      driver: assigned_driver
     }
+    # if there is no available driver, driver will be nil and won't let pax 
+    # request trip and won't update any driver status
+    if assigned_driver
+      assigned_driver.update(available: false)
+    end
 
-    assigned_driver.update(available: false)
     return new_trip_params
   end
 end

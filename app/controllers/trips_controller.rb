@@ -21,13 +21,17 @@ class TripsController < ApplicationController
 
   def create
     new_params = Trip.request_trip
+    if new_params[:driver].nil?
+      redirect_to passenger_path(params[:passenger_id]), notice: 'No Driver Avaliable.'
+      return
+    end
     @trip = Trip.new(new_params)
     @trip.passenger_id = params[:passenger_id]
     if @trip.save
       flash[:success] = "Trip added successfully"
       redirect_to passenger_path(params[:passenger_id])
     else
-      render :new
+      redirect_to passenger_path(params[:passenger_id]), notice: 'Trip was not made.'
     end
   end
 

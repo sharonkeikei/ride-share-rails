@@ -6,6 +6,8 @@
         <th>ID </th>
         <th>Name </th>
         <th>Phone Number </th>
+        <th>Delete</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +17,16 @@
             <td><%= passenger.id %></td>
             <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
             <td><%= passenger.phone_num %></td>
+            <td><%= link_to 'Edit passenger',
+              edit_passenger_path(passenger.id),
+              class: 'btn btn-outline-secondary btn-sm'
+            %></td>
+            <td><%= link_to 'Delete passenger',
+              passenger_path(passenger.id),
+              class: 'btn btn-outline-danger btn-sm',
+              method: :delete,
+              data: { confirm: 'Are you sure?'}
+            %></td>
           </tr>
         <%end%>
       <% else %>
