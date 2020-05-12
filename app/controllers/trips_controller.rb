@@ -44,7 +44,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: id)
 
     if @trip.nil?
-      redirect_to homepages_path, notice: 'Trip not found'
+      head :not_found
       return
     elsif @trip.update(trip_params)
       redirect_to trip_path(@trip.id)
