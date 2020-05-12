@@ -1,6 +1,6 @@
 <div class="driver-container ">
   <h3>Drivers info</h3>
-  <table class="table table-hover table-bordered tbl-driver ">
+  <table class="table table-hover table-bordered tbl-fixed overflow-auto">
     <thead class="thead-light" >
       <tr>
         <th>ID</th>
@@ -9,11 +9,10 @@
         <th>Availability</th>
         <th>Average Rating</th>
         <th>Edit</th>
-        <th>Change Status</th>
         <th>Delete</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       <% if @drivers.length > 0 %>
         <% @drivers.each do |driver| %>
           <tr>
@@ -22,16 +21,11 @@
             <td><%= driver.vin %></td>
             <td><%= (driver.available) ? 'Available' : 'Unavailable'%></td>
             <td><%= driver.average_rating %></td>
-            <td><%= link_to 'Edit Driver',
+            <td><%= link_to 'Edit',
               edit_driver_path(driver.id),
               class: 'btn btn-outline-secondary btn-sm'
             %></td>
-            <td><%= link_to (driver.available ? 'Make Unavailable' : 'Make Available'),
-              toggle_available_path(driver.id),
-              class: 'btn btn-outline-secondary btn-sm',
-              method: :patch 
-            %></td>
-            <td><%= link_to 'Delete Driver',
+            <td><%= link_to 'Delete',
               driver_path(driver.id),
               class: 'btn btn-outline-danger btn-sm',
               method: :delete,

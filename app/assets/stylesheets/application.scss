@@ -68,6 +68,25 @@ table {
   cursor: default;
 }
 
-tbody {
-  overflow: scroll
-}
+// .tbl-fixed tbody{
+//   display: block;
+//   overflow-y: auto;
+//   height: 1000px;
+//   width: 100%;
+// }
+// .tbl-fixed thead {
+//   display: block;
+//   width: 100%;
+// }
+
+// .tbl-passenger tbody{
+//   display: block;
+//   overflow: auto;
+//   height: 1000px;
+//   width: 100%;
+// }
+
+// .tbl-passenger thead {
+//   display: block;
+//   width: 100%;
+// }

@@ -17,11 +17,11 @@
             <td><%= passenger.id %></td>
             <td><%= link_to passenger.name, passenger_path(passenger.id) %></td>
             <td><%= passenger.phone_num %></td>
-            <td><%= link_to 'Edit passenger',
+            <td><%= link_to 'Edit',
               edit_passenger_path(passenger.id),
               class: 'btn btn-outline-secondary btn-sm'
             %></td>
-            <td><%= link_to 'Delete passenger',
+            <td><%= link_to 'Delete',
               passenger_path(passenger.id),
               class: 'btn btn-outline-danger btn-sm',
               method: :delete,
