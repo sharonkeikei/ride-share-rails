@@ -60,6 +60,28 @@ describe Passenger do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+
+    before do 
+      @new_driver = Driver.create(name: "Ron Weasley", vin: "5938282E")
+      @no_trips_passenger = Passenger.new(name: "Bob", phone_num: "111-111-1211")
+      @kari_passenger = Passenger.new(name: "Kari", phone_num: "123-456-7890")
+      @no_trips_passenger.save
+      @kari_passenger.save
+    end
+
+    describe "get total expenses" do
+      it "returns 0 if passenger has not had any trips" do
+        expect(@no_trips_passenger.get_total_expenses).must_equal 0
+      end
+
+      it 'correctly return the correct total expenses for passenger\'s trips' do
+        @trip_1 = Trip.create(driver_id: @new_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 5, cost: 5)
+        @trip_2 = Trip.create(driver_id: @new_driver.id, passenger_id: @kari_passenger.id, date: Date.today, rating: 3, cost: 20)
+
+        expect(@kari_passenger.get_total_expenses).must_equal 25
+      end
+    end
+
     describe "request a ride" do
       # Your code here
     end

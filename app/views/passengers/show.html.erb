@@ -5,6 +5,7 @@
   <img class='profile_pic' src="https://source.unsplash.com/random" alt='random pictures'> 
   <h3> Passenger Name: <%= @passenger.name %></h3>
   <p>Phone Number: <%= @passenger.phone_num %></p>
+  <p>Total Spent: $<%= @passenger.get_total_expenses %></p>
   <br>
   <%= link_to 'Delete passenger',
     passenger_path(@passenger.id),

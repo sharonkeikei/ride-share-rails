@@ -10,7 +10,7 @@ class TripsController < ApplicationController
 
     # redirect to passenger OR driver show page???
     if @trip.nil?
-      redirect_to trips_path, notice: 'Trip not found'
+      redirect_to homepages_path, notice: 'Trip not found'
       return
     end
   end
@@ -44,7 +44,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: id)
 
     if @trip.nil?
-      head :not_found
+      redirect_to homepages_path, notice: 'Trip not found'
       return
     elsif @trip.update(trip_params)
       redirect_to trip_path(@trip.id)
@@ -60,7 +60,7 @@ class TripsController < ApplicationController
     id = params[:id]
     @trip = Trip.find_by(id: id)
     if @Trip.nil?
-      head :not_found
+      redirect_to homepages_path, notice: 'Trip not found'
       return
     end
 

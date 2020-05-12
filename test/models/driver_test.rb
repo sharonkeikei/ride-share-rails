@@ -102,7 +102,6 @@ describe Driver do
     end
 
     describe "total earnings" do
-      # Your code here
       it "return 0 if driver has not driven any trip" do
         expect(@no_trips_driver.total_earnings).must_equal 0
       end
@@ -116,7 +115,6 @@ describe Driver do
         @kari_driver.reload
         expect(@kari_driver.total_earnings).must_equal 6054.44
       end
-
     end
 
     describe "can go online" do
