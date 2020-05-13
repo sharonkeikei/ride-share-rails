@@ -78,7 +78,9 @@ describe PassengersController do
     # Your tests go here
     it 'responds with success when getting the edit page for an existing valid passenger' do
       testing_passenger = Passenger.create(name: 'Hello Kitty', phone_num: '12345678')
+
       get edit_passenger_path(testing_passenger.id)
+
       must_respond_with :success
     end
 
@@ -101,8 +103,8 @@ describe PassengersController do
         }
       }
       expect{patch passenger_path(passenger.id), params: update_params}.wont_change 'Passenger.count'
-      must_redirect_to passenger_path(passenger.id)
       passenger.reload
+      must_redirect_to passenger_path(passenger.id)
       expect(passenger.name).must_equal update_params[:passenger][:name]
       expect(passenger.phone_num).must_equal update_params[:passenger][:phone_num]
     end
@@ -128,6 +130,10 @@ describe PassengersController do
         }
       }
       expect{patch passenger_path(dobby_the_passenger.id), params: update_param}.wont_change 'Passenger.count'
+      dobby_the_passenger.reload
+
+      expect(dobby_the_passenger.name).must_equal 'Dobby'
+      expect(dobby_the_passenger.phone_num).must_equal '12345789'
       # we render :edit so we decide not to test render
     end
   end
@@ -136,12 +142,14 @@ describe PassengersController do
     # Your tests go here
     it "destroys the passenger instance in db when passenger exists, then redirects" do
       removing_passenger = Passenger.create(name: 'Winnie the pooh', phone_num: '12345678910')
+      
       expect{delete passenger_path(removing_passenger.id)}.must_differ 'Passenger.count', -1
       must_redirect_to passengers_path
     end
 
     it "does not change the db when the passenger does not exist, then redirect back to passenger list" do
       non_existing_id = -1
+
       expect{delete passenger_path(non_existing_id)}.wont_change 'Passenger.count'
       must_redirect_to passengers_path
     end
