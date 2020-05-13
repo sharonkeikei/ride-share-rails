@@ -1,9 +1,5 @@
 class TripsController < ApplicationController
 
-  # def index
-  #   @trips = Trips.order(:id).all
-  # end
-
   def show
     id = params[:id]
     @trip = Trip.find_by(id: id)

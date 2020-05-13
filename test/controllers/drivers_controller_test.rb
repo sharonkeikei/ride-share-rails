@@ -1,7 +1,6 @@
 require "test_helper"
 
 describe DriversController do
-  # Note: If any of these tests have names that conflict with either the requirements or your team's decisions, feel empowered to change the test names. For example, if a given test name says "responds with 404" but your team's decision is to respond with redirect, please change the test name.
 
   describe "index" do
     it "responds with success when there are many drivers saved" do
@@ -19,8 +18,6 @@ describe DriversController do
 
 
     it "responds with success when there are no drivers saved" do
-      # Ensure that there are zero drivers saved
-      # Assert
       expect(Driver.all.length).must_equal 0
 
       get drivers_path
@@ -83,32 +80,26 @@ describe DriversController do
   
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid driver" do
-      # Arrange
       # Ensure there is an existing driver saved
       driver = Driver.create(name: 'Hello Kitty', vin: 'abc12345')
-      # Act  
+
       get edit_driver_path(driver.id)
-      # Assert
+
       must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing driver" do
-      # Arrange
       # Ensure there is an invalid id that points to no driver
       invalid_driver_id = -1
-      # Act
+
       get edit_driver_path(invalid_driver_id)
-      # Assert
+
       must_redirect_to drivers_path
     end
   end
 
   describe "update" do
     it "can update an existing driver with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data
       driver = Driver.create(name: 'Hello Kitty', vin: 'abc12345')
       update_params = {
         driver: {
@@ -116,13 +107,8 @@ describe DriversController do
           vin: '123456789'
         }
       }
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+  
       expect{patch driver_path(driver.id), params: update_params}.wont_change 'Driver.count'
-      # Assert
-      # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
-      # Check that the controller redirected the user
-      # put request
       must_redirect_to driver_path(driver.id)
       driver.reload
       expect(driver.name).must_equal update_params[:driver][:name]
@@ -130,10 +116,7 @@ describe DriversController do
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do
-      # Arrange
-      # Ensure there is an invalid id that points to no driver
-      # Set up the form data
-      invalid_update_id = 99999999999999999999999999999999999999999999999999999
+      invalid_update_id = -1
       
       update_params = {
         driver: {
@@ -141,20 +124,12 @@ describe DriversController do
           vin: '123456789'
         }
       }
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
+
       expect{patch driver_path(invalid_update_id), params: update_params}.wont_change 'Driver.count'
-      # Assert
-      # Check that the controller gave back a 404
       must_respond_with 404
     end
 
     it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
       dobby_the_driver = Driver.create(name: 'Dobby', vin: '12345789')
 
       driver_param = {
@@ -164,11 +139,9 @@ describe DriversController do
       }
 
       expect{patch driver_path(dobby_the_driver.id), params: driver_param}.wont_change "Driver.count"
-      
       dobby_the_driver.reload
       expect(dobby_the_driver.name).must_equal 'Dobby'
       expect(dobby_the_driver.vin).must_equal '12345789'
-
       # we render :edit so we decide not to test render
     end
   end
@@ -193,7 +166,6 @@ describe DriversController do
     end
 
     it "updates the available boolean from true to false" do
-
       driver = Driver.first
 
       patch toggle_available_path(driver.id)
@@ -210,7 +182,7 @@ describe DriversController do
       patch toggle_available_path(driver.id)
       patch toggle_available_path(driver.id)
       driver.reload
-
+      
       must_redirect_to driver_path(driver.id)
       expect(driver.available).must_equal true
     end

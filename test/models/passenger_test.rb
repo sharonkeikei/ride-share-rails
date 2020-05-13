@@ -50,7 +50,7 @@ describe Passenger do
   end
 
   describe "custom methods" do
-
+    
     before do 
       @new_driver = Driver.create(name: "Ron Weasley", vin: "5938282E")
       @no_trips_passenger = Passenger.new(name: "Bob", phone_num: "111-111-1211")
@@ -59,7 +59,7 @@ describe Passenger do
       @kari_passenger.save
     end
 
-    describe "get total expenses" do
+    describe "get_total_expenses" do
       it "returns 0 if passenger has not had any trips" do
         expect(@no_trips_passenger.get_total_expenses).must_equal 0
       end
@@ -71,14 +71,5 @@ describe Passenger do
         expect(@kari_passenger.get_total_expenses).must_equal 25
       end
     end
-
-    describe "request a ride" do
-      # Your code here
-    end
-
-    describe "complete trip" do
-      # Your code here
-    end
-    # You may have additional methods to test here
   end
 end

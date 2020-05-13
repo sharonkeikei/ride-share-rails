@@ -2,7 +2,6 @@ require "test_helper"
 
 describe PassengersController do
   describe "index" do
-    # Your tests go here
     it 'responds with success when there are multiple passenger created' do
       passenger1 = Passenger.new(name: "Harry Potter", phone_num: "12345678")
       passenger1.save
@@ -75,7 +74,6 @@ describe PassengersController do
   end
 
   describe "edit" do
-    # Your tests go here
     it 'responds with success when getting the edit page for an existing valid passenger' do
       testing_passenger = Passenger.create(name: 'Hello Kitty', phone_num: '12345678')
 
@@ -110,7 +108,7 @@ describe PassengersController do
     end
 
     it 'does not update any driver if given an invalid id and repsond with 404' do
-      invalid_update_id = 99999999999999999999999999999999999999999999999999999
+      invalid_update_id = -1
       update_params = {
         passenger: {
           name: 'Harry Potter',
@@ -139,7 +137,6 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    # Your tests go here
     it "destroys the passenger instance in db when passenger exists, then redirects" do
       removing_passenger = Passenger.create(name: 'Winnie the pooh', phone_num: '12345678910')
       

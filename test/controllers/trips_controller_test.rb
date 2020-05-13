@@ -117,14 +117,8 @@ describe TripsController do
   describe "destroy" do
     it "deletes a trip if the trip is valid" do
       trip = Trip.create(date: Date.today, cost: 5, rating: 2, driver: @driver, passenger: @passenger)
-      p "Before delete: #{Trip.count}"
-      p "TRIP ID: #{trip.id}"
-      before_count = Trip.count
-      # delete trip_path(trip.id)
-      p "After delete: #{Trip.count}"
       
       expect{delete trip_path(trip.id)}.must_differ "Trip.count", -1
-      
       must_redirect_to homepages_path
     end
 

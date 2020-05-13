@@ -2,7 +2,6 @@ class Passenger < ApplicationRecord
   has_many :trips , dependent: :destroy
   validates :name, :phone_num, presence: true
 
-
   def get_total_expenses
     return 0 if self.trips.length == 0
 

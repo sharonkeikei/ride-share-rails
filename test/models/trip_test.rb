@@ -14,6 +14,9 @@ describe Trip do
     expect(@trip.valid?).must_equal true
   end
 
+  # Attempted but didn't finish/ get these to work before relevant lectures
+  # _____________________________________________________________________
+
   # it "will have the required fields" do
   #   new_trip.save
   #   trip = Trip.first
