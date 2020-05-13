@@ -43,7 +43,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: id)
 
     if @passenger.nil?
-      redirect_to passengers_path, notice: 'Passenger not found'
+      head :not_found
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger.id)
