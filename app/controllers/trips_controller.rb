@@ -22,7 +22,7 @@ class TripsController < ApplicationController
   def create
     new_params = Trip.request_trip
     if new_params[:driver].nil?
-      redirect_to passenger_path(params[:passenger_id]), notice: 'No Driver Avaliable. No Trip made!'
+      redirect_to passenger_path(params[:passenger_id]), notice: 'No Driver Available. No Trip made!'
       return
     end
     @trip = Trip.new(new_params)
@@ -65,15 +65,13 @@ class TripsController < ApplicationController
   def destroy
     id = params[:id]
     @trip = Trip.find_by(id: id)
-    if @Trip.nil?
+    if @trip.nil?
       redirect_to homepages_path, notice: 'Trip not found'
       return
     end
 
-    # what should happen after we delete a trip??
-    # go back to previous page??
     @trip.destroy
-    redirect_to drivers_path
+    redirect_to homepages_path
     flash[:success] = "Trip removed successfully"
     return
   end
